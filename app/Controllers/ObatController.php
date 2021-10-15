@@ -8,6 +8,7 @@ class ObatController extends BaseController
 {
     public function index()
     {
-        return view('admin');
+        $data['page'] = 'obat/index';
+        return view('admin', $data);
     }
 }

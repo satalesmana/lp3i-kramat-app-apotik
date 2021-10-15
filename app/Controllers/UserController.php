@@ -8,6 +8,7 @@ class UserController extends BaseController
 {
     public function index()
     {
-        return view('users/index');
+        $data['page'] = 'users/index';
+        return view('admin', $data);
     }
 }
