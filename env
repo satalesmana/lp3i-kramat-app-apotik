@@ -37,10 +37,10 @@
 # DATABASE
 #--------------------------------------------------------------------
 
- database.default.hostname = localhost
- database.default.database = app-apotik
- database.default.username = root
- database.default.password = 
+ database.default.hostname = remotemysql.com
+ database.default.database = 8tLsRsOeBb
+ database.default.username = 8tLsRsOeBb
+ database.default.password = ymhmGdTdyO
  database.default.DBDriver = MySQLi
  database.default.DBPrefix =
 
