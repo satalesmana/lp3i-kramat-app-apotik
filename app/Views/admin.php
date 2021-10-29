@@ -11,10 +11,8 @@
 
 	  <link href="<?php echo base_url(); ?>/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	  <link href="<?php echo base_url(); ?>/plugins/thems/style.css" rel="stylesheet">
-
-
     <style>
-      .bd-placeholder-img {
+    .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;
         -webkit-user-select: none;
@@ -28,8 +26,18 @@
         }
       }
     </style>
+    <script>
+      
+      function showLoading(){
+        const element = document.getElementById('loading_page');
+        element.classList.add("loading");
+      }
 
-    
+      function hideLoading(){
+        const element = document.getElementById('loading_page');
+        element.classList.remove("loading");
+      }
+    </script>
   </head>
   <body>
 
@@ -47,6 +55,7 @@
     </header>
 
     <div class="container-fluid">
+    <div id="loading_page">Loading&#8230;</div>
       <div class="row">
         <?= $this->include('admin_menu') ?>
         

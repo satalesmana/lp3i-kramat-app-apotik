@@ -3,13 +3,17 @@
     <div class="btn-toolbar mb-2 mb-md-0">
         <div class="btn-group me-2">
             <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#formObatModal"> Add New </button>
-            <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-            <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary">Reload</button>
         </div>
-        <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-            <span data-feather="calendar"></span> 
-            This week
-        </button>
+        <div class="dropdown">
+            <button class="btn  btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Export
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="#">Pdf</a></li>
+                <li><a class="dropdown-item" href="#">Excel</a></li>
+            </ul>
+        </div>
     </div>
 </div>
 
@@ -47,6 +51,7 @@
 <script type="text/javascript">
 
     function deleteData(id) {
+        this.showLoading()
         fetch('<?php echo site_url('admin/obat/'); ?>'+id, {
            method: 'DELETE', 
            headers: {
@@ -55,11 +60,14 @@
            body: null
         }).then( res =>{
             window.location.reload(false);
+        }).catch(err=>{
+            this.hideLoading()
         });
     }
 
     
     function editData(id){
+        this.showLoading()
         const formModal = new bootstrap.Modal(
             document.getElementById('formObatModal'), {
                 keyboard: false
@@ -73,10 +81,11 @@
            body: null
         }).then(response => response.json())
           .then(response => {
-            document.getElementsByName('nama_obat')[0].value = response.nama_obat;
-            document.getElementsByName('harga_jual')[0].value = response.harga_jual;
-            document.getElementsByName('harga_beli')[0].value = response.harga_beli;
-            document.getElementsByName('qty')[0].value = response.qty;
+              document.getElementsByName('nama_obat')[0].value = response.nama_obat;
+              document.getElementsByName('harga_jual')[0].value = response.harga_jual;
+              document.getElementsByName('harga_beli')[0].value = response.harga_beli;
+              document.getElementsByName('qty')[0].value = response.qty;
+              this.hideLoading()
 
             formModal.toggle();
         });
